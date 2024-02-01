@@ -5,7 +5,7 @@ import styled from "styled-components";
 const Container = styled.div`
   flex: 1;
   padding: 16px;
-  border: 2px dashed ${({ theme }) => theme.arrow + 90};
+  border: 2px dashed ${({ theme }) => theme.yellow + 90};
   color: ${({ theme }) => theme.arrow + 80};
   border-radius: 20px;
   display: flex;
