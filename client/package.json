@@ -9,7 +9,15 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "styled-components": "^5.3.5",
+    "react-router-dom": "^6.3.0",
+    "axios": "^1.4.0",
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/lab": "^5.0.0-alpha.130",
+    "@mui/material": "^5.13.1"
   },
   "scripts": {
     "start": "react-scripts start",
