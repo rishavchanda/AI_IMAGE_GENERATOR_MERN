@@ -108,7 +108,11 @@ const Home = () => {
               <ImageCard
                 key={index}
                 item={item}
-                heights={heights[index < heights.length ? index : 1]}
+                heights={
+                  heights[
+                    index < heights.length ? index : heights.length % index
+                  ]
+                }
               />
             ))}
           </Masonry>
