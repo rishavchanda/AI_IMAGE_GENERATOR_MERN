@@ -37,6 +37,9 @@ const Body = styled.div`
   display: flex;
   flex-direction: column;
   gap: 18px;
+  font-size: 12px;
+  font-weight: 400;
+  color: ${({ theme }) => theme.text_secondary};
 `;
 
 const Actions = styled.div`
@@ -111,7 +114,8 @@ const GenerateImage = ({
           value={post.prompt}
           handelChange={(e) => setPost({ ...post, prompt: e.target.value })}
         />
-        {error && <div style={{ color: "red" }}>{error}</div>}
+        {error && <div style={{ color: "red" }}>{error}</div>}* You can post the
+        AI Generated Image to showcase in the community!
       </Body>
       <Actions>
         <Button
@@ -119,6 +123,7 @@ const GenerateImage = ({
           leftIcon={<AutoAwesome />}
           flex
           isLoading={generateImageLoading}
+          isDisabled={post.prompt === ""}
           onClick={(e) => generateImage()}
         />
         <Button
@@ -126,6 +131,9 @@ const GenerateImage = ({
           leftIcon={<CreateRounded />}
           type="secondary"
           flex
+          isDisabled={
+            post.name === "" || post.photo === "" || post.prompt === ""
+          }
           isLoading={createPostLoading}
           onClick={() => createPost()}
         />
