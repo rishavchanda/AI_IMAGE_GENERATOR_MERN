@@ -19,20 +19,22 @@ const Button = styled.div`
     padding: 8px 12px;
   }
 
-  ${({ isDisabled, type, theme }) =>
-    isDisabled
-      ? `
-  background: ${theme.disabled};
-  cursor: not-allowed;
-
-  `
-      : type === "secondary"
+  ${({ type, theme }) =>
+    type === "secondary"
       ? `
   background: ${theme.secondary};
   `
       : `
   background: ${theme.primary};
 `}
+
+  ${({ isDisabled }) =>
+    isDisabled &&
+    `
+  opacity: 0.4;
+  cursor: not-allowed;
+
+  `}
   ${({ isLoading }) =>
     isLoading &&
     `
