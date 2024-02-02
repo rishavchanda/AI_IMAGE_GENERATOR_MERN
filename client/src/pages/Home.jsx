@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import SearchBar from "../components/SearchBar";
 import ImageCard from "../components/cards/ImageCard";
-import Masonry from "@mui/lab/Masonry";
 import { GetPosts } from "../api";
 import { CircularProgress } from "@mui/material";
 
@@ -45,6 +44,23 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
+const CardWrapper = styled.div`
+  display: grid;
+  gap: 20px;
+
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (min-width: 640px) and (max-width: 1199px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 639px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+`;
+
 const Home = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -84,9 +100,7 @@ const Home = () => {
     if (search) {
       setFilteredPost(filteredPosts);
     }
-  }, [search]);
-
-  const heights = [200, 300, 220, 150, 350, 400, 250, 350, 450];
+  }, [posts, search]);
 
   return (
     <Container>
@@ -103,19 +117,20 @@ const Home = () => {
         {loading ? (
           <CircularProgress />
         ) : (
-          <Masonry columns={{ xs: 2, sm: 3, md: 4 }} spacing={2}>
-            {filteredPost.map((item, index) => (
-              <ImageCard
-                key={index}
-                item={item}
-                heights={
-                  heights[
-                    index < heights.length ? index : heights.length % index
-                  ]
-                }
-              />
-            ))}
-          </Masonry>
+          <CardWrapper>
+            {filteredPost.length > 0 ? (
+              <>
+                {filteredPost
+                  .slice()
+                  .reverse()
+                  .map((item, index) => (
+                    <ImageCard key={index} item={item} />
+                  ))}
+              </>
+            ) : (
+              <>No Posts Found !!</>
+            )}
+          </CardWrapper>
         )}
       </Wrapper>
     </Container>
